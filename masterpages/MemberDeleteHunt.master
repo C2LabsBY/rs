@@ -1,0 +1,57 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+
+	
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+	<form id="form1" action="/member/deletehunt?id here" method="post" name="form1">
+	<table width="340" border="0" bgcolor="white" align="center">
+    	<tbody>
+			<tr>
+                <td>
+                    <table width="100%" cellspacing="0" cellpadding="0" bgcolor="white">
+                        <tbody>
+							<tr>
+								<td align="left"><img src="/images/reiq_logo_small.gif"></td>
+								<td align="left"><h4>Delete my Property Alert!</h4></td>
+                        	</tr>
+                    	</tbody>
+					</table>
+                </td>                
+            </tr>
+            <tr>
+                <td>
+                    <table width="335" cellspacing="0" cellpadding="0" style="border: 1px solid #DFE4EC;">             
+                        <tbody>
+							<tr> 
+								<td align="center">
+									<br><br>									
+										Are you sure you want to delete "Hunt name should be here"?
+										<br><br>
+										<input type="submit" class="send" id="btnDel" value="Yes" name="btnDel">
+									<input type="submit" class="send" id="btnNo" onclick="javascript:opener.document.location = '/member/home';window.close();" value="No" name="btnNo">									
+									<br><br><br>
+								</td>
+                      		</tr>
+                   		</tbody>
+					</table>         
+                </td>
+            </tr>
+        </tbody>
+	</table>               
+</form>
+</asp:content>

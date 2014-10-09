@@ -1,0 +1,235 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+	
+<!-- Main data table -->
+<table width="900" cellpadding="0" cellspacing="0" >
+  <tr >
+	<td valign='top' align='left'>
+		
+		<table width="800" align="left">
+			<tr>
+				
+				<!-- header of table -->
+				<td align="left" valign="top">
+					<table width="100%">
+						<tr>
+							<td><h1>Welcome to My REIQ, "UserName here"</h1></td>
+							<td align="right"><a href="/member/update">Update my profile</a></td>
+						</tr>
+					</table>
+				</td>
+				<!-- end of table header -->
+				<table width="100%">
+				<tr>
+					<td width="550" valign="top">
+					
+					<!-- Saved Searches section -->
+					<table cellpadding="0" cellspacing="0" width="553">
+						<tr>
+							<td align="left"><h4>My Saved Searches</h4></td>
+							<td align="right"><a href ="/saveSearchInstruction.aspx">+ add a saved search</a></td>
+						</tr>
+						<tr>
+							<td colspan="2">                            
+								<table width="100%" cellpadding="0" cellspacing="0">    
+									<tr height="29" style="background: url('/images/ahc/web/webuser/header_table_blue.jpg') repeat-y">              
+										<td>
+											<table cellpadding="0" cellspacing="0" width="100%">
+												<tr>
+													<td width="15"></td>
+													<td class="txtWebUserWhite" width="140">Property Search's Name</td>
+													<td class="txtWebUserWhite" width="218">Save Date</td>
+													<td width="55" align="center"></td>
+													<td width="55" align="center"></td>
+													<td width="55" align="center"></td>
+													<td width="15"></td>
+												</tr>
+											</table>
+										</td>
+									</tr>     
+									<tr style="background: url('/images/ahc/web/webuser/bg_table_blue.jpg')  repeat-y">
+										<td>                                                    
+											<table cellpadding="0" cellspacing="0" width="100%">
+												<tr><td height="4"></td></tr>            
+												<tr height="18">                     
+													<td width="15"></td>
+													<td valign="top">Currently you don't have any saved property searches.</td>
+													<td width="15"></td>
+												</tr> 
+												<tr>
+													<td></td>
+													<td height="4" background="/images/ahc/web/webuser/line_grey.jpg"></td>
+													<td></td>
+												</tr>    
+											</table>
+										</td>
+									</tr>             
+									<tr><td><img src="/images/ahc/web/webuser/bottom_table_blue.jpg" /></td></tr>
+								</table>                                        
+							</td>
+						</tr>                        
+					</table>
+					<!-- end of Saved Searches section -->                
+					
+					<br /><br />
+						
+					<!-- Property Alerts section -->
+						<table cellpadding="0" cellspacing="0" width="553">
+							<tr>
+								<td align="left"><h4>My Property Alerts</h4></td>
+								<td align="right"><a href="/member/subscribe">+ Create new property alert</a> </td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									
+									<table width="100%" cellpadding="0" cellspacing="0">    
+										<tr height="29" style="background: url('/images/ahc/web/webuser/header_table_blue.jpg') repeat-y">              
+											<td>
+												<table cellpadding="0" cellspacing="0" width="100%">
+													<tr>
+														<td width="15"></td>
+														<td class="txtWebUserWhite" width="140">Property Alert's Name</td>
+														<td class="txtWebUserWhite" width="218">Subscription Period</td>
+														<td width="55" align="center"></td>
+														<td width="55" align="center"></td>
+														<td width="55" align="center"></td>
+														<td width="15"></td>
+													</tr>
+												</table>
+											</td>
+										</tr>     
+										<tr style="background: url('/images/ahc/web/webuser/bg_table_blue.jpg')  repeat-y">
+											<td>                                                    
+												<table width="100%" cellspacing="0" cellpadding="0">
+                                                            <tbody><tr><td height="4"></td></tr>            
+                                                            <tr height="18">                     
+                                                                <td width="15"></td>
+                                                                <td width="140" valign="top">test (Rob)</td>
+                                                                <td width="218" valign="top">
+                                                                    Indefinitely from 
+                                                                    5/07/2013
+                                                                </td>
+																<td width="55" valign="top" align="center"><img align="absmiddle" src="/images/ahc/web/webuser/icon_view.jpg"> <a href="/member/hunt?subID=1017">View</a> | </td>
+																<td width="55" valign="top" align="center"><img align="absmiddle" src="/images/ahc/web/webuser/icon_edit.jpg"> <a href="/member/edithunt?huntid=1017">Edit</a> | </td>
+																<td width="55" valign="top" align="center"><img align="absmiddle" src="/images/ahc/web/webuser/icon_delete.jpg"> <a href="javascript:openPopUp('/member/deletehunt?huntid=1017', '','scrollbars=no, menubar=no, width=350, height=200, resizable=yes')">Delete</a></td>
+                                                                <td width="15"></td>
+                                                            </tr> 
+                                                            <tr>
+                                                                <td></td>
+                                                                <td height="4" background="/images/ahc/web/webuser/line_grey.jpg" colspan="5"></td>
+                                                                <td></td>
+                                                            </tr>    
+                                                        </tbody></table>
+											</td>
+										</tr>             
+										<tr><td><img src="/images/ahc/web/webuser/bottom_table_blue.jpg" /></td></tr>
+									</table>                                        
+								</td>
+							</tr>                        
+						</table>
+					  <!-- end of Property Alerts section -->
+						
+						<br />
+						<br />
+						
+					<!-- My Favourites section -->
+						<table cellpadding="0" cellspacing="0" width="553">
+							<tr>
+								<td align="left"><h4>My Favourites</h4></td>
+								<td align="right"><a href="Favourites.aspx?action=add">+ Create my favourites</a>  </td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									
+									<table width="100%" cellpadding="0" cellspacing="0">    
+										<tr height="29" style="background: url('/images/ahc/web/webuser/header_table_blue.jpg') repeat-y">              
+											<td>
+												<table cellpadding="0" cellspacing="0" width="100%">
+													<tr>
+														<td width="15"></td>
+														<td class="txtWebUserWhite" width="140">Favourite's Name</td>
+														<td class="txtWebUserWhite" width="218">Comments</td>
+														<td width="55" align="center"></td>
+														<td width="55" align="center"></td>
+														<td width="55" align="center"></td>
+														<td width="15"></td>
+													</tr>
+											   </table>  
+											</td>       
+										</tr>    
+										<tr style="background: url('/images/ahc/web/webuser/bg_table_blue.jpg')  repeat-y">
+											<td>                                                    
+												<table cellpadding="0" cellspacing="0" width="100%">
+													<tr><td height="4"></td></tr>            
+													<tr height="18">                     
+														<td width="15"></td>
+														<td valign="top">Currently you don't have any favourites</td>
+														<td width="15"></td>
+													</tr> 
+													<tr>
+														<td></td>
+														<td height="4" background="/images/ahc/web/webuser/line_grey.jpg"></td>
+														<td></td>
+													</tr>    
+												</table>
+											</td>
+										</tr>             
+										<tr><td><img src="/images/ahc/web/webuser/bottom_table_blue.jpg" /></td></tr>
+									</table>
+													
+								</td>
+							</tr>    
+						</table>  
+					<!-- end of My Favourites section -->
+					
+						<!-- suggestion box-->
+							<div ID="suggestionBox">
+								<h4>Suggestion Box</h4>                            
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td width="375" cellpadding="0">
+											<table width="100%">
+											
+											<tr>
+												<td align="left" valign="top">Suggestion*</td>
+												<td align="left" ><textarea name="ctl00$ContentPlaceHolder1$txtComments" rows="5" cols="30" id="ctl00_ContentPlaceHolder1_txtComments" class="textbox2"></textarea></td>
+											</tr>
+											<tr>
+												<td>* required fields</td><td><input type="submit" name="ctl00$ContentPlaceHolder1$Button1" value="Submit" onclick="return checkFormSuggestion();" id="ctl00_ContentPlaceHolder1_Button1" /></td>
+											</tr>
+											
+											</table>
+										</td>
+									  
+									</tr>
+								</table>                            
+								
+							</div>
+						<!--end of suggestion box-->
+						</td>
+				</tr>
+			</table>
+			</tr>
+		</table>
+	  </td>
+	</tr>
+	</table>
+<!-- end of Main Data table -->
+</asp:content>

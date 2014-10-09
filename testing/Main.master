@@ -1,0 +1,57 @@
+﻿<%@ Master Language="C#" MasterPageFile="BaseMasterPage.master" AutoEventWireup="false" Inherits="MasterPageBase" %>
+
+<asp:Content runat="server" ContentPlaceHolderID="ContentSection">
+
+    <asp:ContentPlaceHolder runat="server" ID="ContentHeader">
+    <%-- 
+
+
+    --%>
+    </asp:ContentPlaceHolder>
+
+    <aside id="right-sidebar">
+
+        <section class="sidebar-top-control">
+            <asp:ContentPlaceHolder runat="server" ID="SideBarTopControl">
+            <%-- 
+
+
+            --%>
+            </asp:ContentPlaceHolder>
+        </section>
+
+        <section class="sidebar-inn">
+            <section class="sidebar-block">
+                <asp:ContentPlaceHolder runat="server" ID="RightSideBar">
+                <%-- 
+
+
+                --%>
+                </asp:ContentPlaceHolder>
+            </section>
+        </section>
+    </aside>
+    
+      
+    <section id="main-data">
+        <section class="main-data-top-control">
+            <asp:ContentPlaceHolder runat="server" ID="MainDataTopControl">
+            <%-- 
+
+
+            --%>
+            </asp:ContentPlaceHolder>
+        </section>
+
+        <section class="main-data-in">
+            <asp:ContentPlaceHolder runat="server" ID="MainData">
+            <%-- 
+
+
+            --%>
+            </asp:ContentPlaceHolder>
+        </section>
+        
+    </section>
+
+</asp:Content>

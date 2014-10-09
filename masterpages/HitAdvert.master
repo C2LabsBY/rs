@@ -1,0 +1,5 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/HitAdvert.ascx" TagPrefix="reiq" TagName="HitAdvert" %>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+    	<reiq:HitAdvert runat="server" />
+</asp:Content>

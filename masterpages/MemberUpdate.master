@@ -1,0 +1,87 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+
+	<form name="aspnetForm" method="post" action="/member/update" id="aspnetForm">
+	<table width="900" cellpadding="0" cellspacing="0" >
+    	<tr >
+			<td valign='top' align='left'>
+				<table width="100%" >
+					<tr>
+						<td align="left"><h1>Update My REIQ</h1></td>
+					</tr>
+					
+					<tr>
+						<td align="left">        
+							<a href="javascript:history.back(-1)">&laquo; Go back to Previous Page</a>
+							 <br /><br />       
+						 </td>
+					</tr>
+					<tr>
+						<td align=left>
+								<table cellpadding="2" cellspacing="2" align="left">
+								<tr>
+									<td width="150">First Name*</td>
+									<td><input name="ctl00$ContentPlaceHolder1$txtFirstName" type="text" id="ctl00_ContentPlaceHolder1_txtFirstName" /></td>
+								</tr>
+								<tr>
+									<td>Last Name</td>
+									<td><input name="ctl00$ContentPlaceHolder1$txtLastName" type="text" id="ctl00_ContentPlaceHolder1_txtLastName" /></td>
+								</tr>
+								<!--<tr>
+									<td>User ID</td>
+									<td>0</td>
+								</tr>-->
+								<tr>
+									<td>Email Address*</td>
+									<td><input name="ctl00$ContentPlaceHolder1$txtEmail" type="text" id="ctl00_ContentPlaceHolder1_txtEmail" style="width:200px;" /></td>
+								</tr>        
+								<tr>
+									<td>Phone</td>
+									<td><input name="ctl00$ContentPlaceHolder1$txtPhone" type="text" id="ctl00_ContentPlaceHolder1_txtPhone" style="width:120px;" /></td>
+								</tr>
+								<tr>
+									<td>Password*</td>
+									<td><input name="ctl00$ContentPlaceHolder1$txtPassword" type="password" id="ctl00_ContentPlaceHolder1_txtPassword" /></td>
+								</tr>
+								<tr>
+									<td>Re-type Password*</td>
+									<td><input name="ctl00$ContentPlaceHolder1$txtPasswordC" type="password" id="ctl00_ContentPlaceHolder1_txtPasswordC" /></td>
+								</tr>
+								
+								<tr>
+									<td>Screen Name*</td>
+									<td><input name="ctl00$ContentPlaceHolder1$txtScreenName" type="text" id="ctl00_ContentPlaceHolder1_txtScreenName" /></td>
+								</tr> 
+								<tr>            
+									<td colspan='2' align='center'> <input id="ctl00_ContentPlaceHolder1_chkcondition" type="checkbox" name="ctl00$ContentPlaceHolder1$chkcondition" checked="checked" /><font style='font-size:10px;'>I would like to receive the REIQ's newsletter containing the latest property market information, research and valuable articles on buying, selling and renting property in Queensland.</font></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" name="ctl00$ContentPlaceHolder1$Button1" value="Update My REIQ" onclick="return checkFormWebUserUpdate();" id="ctl00_ContentPlaceHolder1_Button1" /></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</form>
+</asp:content>

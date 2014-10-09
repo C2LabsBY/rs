@@ -1,0 +1,5 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/SuburbProfileSmall.ascx" TagPrefix="reiq" TagName="SuburbProfileSmall" %>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+    	<reiq:SuburbProfileSmall runat="server" />
+</asp:Content>

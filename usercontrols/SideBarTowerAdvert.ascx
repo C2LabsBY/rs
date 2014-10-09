@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SideBarTowerAdvert.ascx.cs" Inherits="usercontrols_SideBarTowerAdvert" %>
+<%  if (!String.IsNullOrEmpty(TowerAdString)) {%><section class="sidebar-block "><%= TowerAdString %></section><%}%>   

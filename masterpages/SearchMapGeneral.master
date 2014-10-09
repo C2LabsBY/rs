@@ -1,0 +1,8 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderId="HomeSection" runat="server">
+	
+<section class="front-page-top-block">  
+    <umbraco:Macro Alias="[UserControl]SearchMapGeneral" runat="server"></umbraco:Macro>
+</section>
+</asp:Content>

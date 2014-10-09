@@ -1,0 +1,29 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/Calculators.ascx" TagPrefix="reiq" TagName="Calculators" %>
+	
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	<!--BEGIN: CONTENT HEADER CMS-->
+		<header id="content-header" class="agent-header">
+		<h1><umbraco:Item field="sectionHeadingH1" stripParagraph="true" runat="server" /></h1>
+			<section class="agent-adv"><!-- AGENT ADV -->
+  	
+  			</section><!-- /AGENT ADV -->
+  	  	</header>
+	<!--/END: CONTENT HEADER CMS-->
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+	<reiq:Calculators ID="Calculators" runat="server" />
+</asp:content>

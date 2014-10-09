@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/GenericContactForm.ascx" TagPrefix="reiq" TagName="GenericContactForm" %>
+<%@ Register Src="~/usercontrols/SideBarRefineResults.ascx" TagPrefix="reiq" TagName="refineresults" %>
+
+<asp:content ContentPlaceHolderId="ContentSection" runat="server">
+    <form id="Form1" runat="server">
+    <asp:ContentPlaceHolder runat="server" ID="ContentHeader">
+    <!-- 	-->
+    </asp:ContentPlaceHolder>
+
+	<aside id="right-sidebar"><!-- RIGHT SIDEBAR -->
+
+        <section class="sidebar-top-control">
+            <asp:ContentPlaceHolder runat="server" ID="SideBarTopControl">
+            <!-- 	-->
+            </asp:ContentPlaceHolder>
+        </section>
+
+        <section class="sidebar-inn"><!-- SIDEBAR INN -->
+            <section class="sidebar-block "><!-- SIDEBAR BLOCK -->
+                <reiq:refineresults ID="Refineresults1"  runat="server" />
+                 <asp:ContentPlaceHolder runat="server" ID="RightSideBar">
+                <!-- 	-->
+                </asp:ContentPlaceHolder>
+                <reiq:GenericContactForm ID="GenericContactForm1" runat="server" />
+            </section><!-- /SIDEBAR BLOCK -->
+        </section><!-- SIDEBAR INN -->
+    </aside><!-- RIGHT SIDEBAR -->
+    
+      
+    <section id="main-data"><!-- MAIN DATA -->
+        <section class="main-data-top-control">
+            <asp:ContentPlaceHolder runat="server" ID="MainDataTopControl">
+            <!-- 	-->
+            </asp:ContentPlaceHolder>
+        </section>
+
+        <section class="main-data-in"><!-- MAIN DATA IN-->
+            <asp:ContentPlaceHolder runat="server" ID="MainData">
+            <!-- 	-->
+            </asp:ContentPlaceHolder>
+        </section><!-- /MAIN DATA IN--> 
+        
+    </section><!-- /MAIN DATA -->
+    </form>
+</asp:content>

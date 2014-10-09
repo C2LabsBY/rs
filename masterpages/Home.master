@@ -1,0 +1,13 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderId="HomeSection" runat="server">
+	
+<section class="front-page-top-block">
+  
+  <umbraco:Macro Alias="[UserControl]SearchForm" runat="server"></umbraco:Macro>
+  <section class="front-content-tab"><!-- FRONT CONTENT TAB -->
+    <section id="fr-content-tab"><!-- FRONT CONTENT (SECOND TAB) -->
+      <umbraco:Macro Alias="[Home]4x4Navi" runat="server" />
+    </section>
+  </section><!-- /FRONT CONTENT (SECOND TAB) --> 
+</asp:Content>

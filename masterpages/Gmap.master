@@ -1,0 +1,5 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/Gmap.ascx" TagPrefix="reiq" TagName="gmap" %>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+    	<reiq:gmap runat="server" />
+</asp:Content>

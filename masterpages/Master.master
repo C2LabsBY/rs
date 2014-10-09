@@ -1,0 +1,237 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/ShowGoogleAnalytics.ascx" TagPrefix="reiq" TagName="ShowGoogleAnalytics" %>
+<%@ Register Src="~/usercontrols/RedirectToSmartPhones.ascx" TagPrefix="reiq" TagName="RedirectToSmartPhones" %>
+<%@ Register Src="~/usercontrols/DisplayMetaTagsAndTitle.ascx" TagPrefix="reiq" TagName="DisplayMetaTagsAndTitle" %>
+<%@ Register Src="~/usercontrols/InjectYandexMetrikaScript.ascx" TagPrefix="reiq" TagName="InjectYandexMetrikaScript" %>
+<%@ Register Src="~/usercontrols/InjectGARemarketingScript.ascx" TagPrefix="reiq" TagName="InjectGARemarketingScript" %>
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="SHORTCUT ICON" type="image/x-icon" href="/images/reiq_star.ico" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<%--<title>
+		<umbraco:Macro language="cshtml" runat="server">@if(!string.IsNullOrEmpty(@Model.seoTitle)){@Model.seoTitle}else{@Model.PageName}</umbraco:Macro>
+	</title>--%>
+    <!--BEGIN: META TAGS-->
+	<reiq:DisplayMetaTagsAndTitle ID="DisplayMetaTagsAndTitle" runat="server" />      
+	<!--/END: META TAGS-->
+	<!--<base href="http://webplanex.net/projects/reiqweb/">-->
+	<link href='http://fonts.googleapis.com/css?family=Signika:400,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="/basemedia/css/style.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/basemedia/css/slider.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/basemedia/css/jquery-ui-1.8.13.custom.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/basemedia/css/reiq.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/basemedia/css/reiq_amend.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/basemedia/css/prettyPhoto.css" media="all">    
+    
+    <% 
+        var currentNode = umbraco.NodeFactory.Node.GetCurrent();
+        
+        if (currentNode != null)
+        {
+            if (currentNode.GetProperty("canonicalOfPage") != null 
+                && !String.IsNullOrEmpty(currentNode.GetProperty("canonicalOfPage").Value) 
+                && Request.Path.ToString() != "/" + currentNode.GetProperty("canonicalOfPage").Value)
+            {%>
+                <link rel="canonical" href="/<umbraco:Item field='canonicalOfPage' runat='server' />" />
+            <%  
+            }
+            //SEO: Remove trailing slash at the end and 301 redirects to alias urls
+            if (currentNode.GetProperty("umbracoUrlAlias") != null 
+                && !String.IsNullOrEmpty(currentNode.GetProperty("umbracoUrlAlias").Value)
+                && currentNode.GetProperty("umbracoUrlAlias").Value != "property"
+                && currentNode.GetProperty("umbracoUrlAlias").Value != "agencydetails"
+                && currentNode.GetProperty("umbracoUrlAlias").Value != "agentdetails"
+                && Request.Path.ToString() != "/" + currentNode.GetProperty("umbracoUrlAlias").Value)
+            {
+                Response.RedirectPermanent("/" + currentNode.GetProperty("umbracoUrlAlias").Value + Request.Url.Query);
+            }
+            else if (Request.Path.ToString().Length > 1 && Request.Path.ToString().EndsWith("/"))
+            {
+                Response.RedirectPermanent(Request.Path.ToString().TrimEnd('/') + Request.Url.Query);
+            }            
+        }
+     %>
+
+    <style>
+        #toTop {
+            padding: 10px 13px;
+            background: none repeat scroll 0 0 #404040;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            right: 10px;
+            display: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" type="text/css" href="/basemedia/css/ie.css" />
+	<![endif]-->
+	<script src="/basemedia/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="/basemedia/scripts/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<script src="/basemedia/scripts/html5shiv.js" type="text/javascript"></script>
+	<script src="/basemedia/scripts/organictabs.jquery.js" type="text/javascript"></script>
+	<script src="/basemedia/scripts/easySlider1.7.js" type="text/javascript"></script>
+	<script src="/basemedia/scripts/jquery.uniform.js" type="text/javascript"></script>	
+    <script src="/basemedia/scripts/jquery-ui-1.8.13.custom.min.js" type="text/javascript"></script> 
+    <script src="/basemedia/scripts/jquery.prettyPhoto.js" type="text/javascript"></script>   
+    <script src="/basemedia/scripts/reiq.js" type="text/javascript"></script>
+    <script src="/basemedia/scripts/custom.js" type="text/javascript"></script>
+    <script src="/basemedia/scripts/ui.dropdownchecklist.js" type="text/javascript"></script>
+
+	<!-- script for displaying popup window (delete hunt). Later will be moved to custom.js -->
+	<script language="javascript">
+		function openPopUp(theURL, winName, features) { //v2.0
+            mapWin = window.open(theURL, winName, features);
+            mapWin.focus();
+        }
+	</script>
+	<!-- end -->
+	
+	<!-- script for displaying data picker. Later will be moved to custom.js -->
+	<script type="text/javascript" src="/scripts/CalendarPopup.js">  </script>
+    <script type="text/javascript"> var cal = new CalendarPopup();</script>
+	<!-- end -->
+	
+	<!-- Script for selecting suburbs by double click in the Suburbs select and move their to neirbourgh select field. And inversely.
+		 Later will be moved to custom.js -->
+	
+	<script language="javascript">
+		selectionCounter = 0;
+    
+		function moveSelectedOptions(from, to) {
+			if (selectionCounter <= 4) {
+				// Move them over
+				for (var i = 0; i < from.options.length; i++) {
+					var o = from.options[i];
+					if (o.selected) {
+						to.options[selectionCounter] = new Option(o.text, o.value, false, false);
+					}
+				}
+				from.selectedIndex = -1;
+				to.selectedIndex = -1;
+				selectionCounter++;
+				
+				var tempSuburb = "";
+				for (var i = 0; i < to.options.length; i++) {
+					if (i == 0) {
+						tempSuburb = to.options[i].value;
+					} else {
+						tempSuburb = tempSuburb + "," + to.options[i].value;
+					}
+				}
+				document.getElementById('ctl00_ContentPlaceHolder1_txtSuburb').value = tempSuburb;
+			}
+			else
+				alert("You have reached the maximum number of suburb selection");
+		}
+	
+		function unpopulate(cboBox) {
+			if (!((document.getElementById('ctl00_ContentPlaceHolder1_ListBox2').options.length == 1) && (document.getElementById('ctl00_ContentPlaceHolder1_cboRegion').value == 0))) {
+				for (var i = (cboBox.options.length - 1); i >= 0; i--) {
+					var o = cboBox.options[i];
+					if (o.selected) {
+						cboBox.options[i] = null;
+					}
+				}
+				selectionCounter--;
+				
+				var tempSuburb = "";
+				for (var i = 0; i < cboBox.options.length; i++) {
+					if (i == 0) {
+						tempSuburb = cboBox.options[i].value;
+					} else {
+					tempSuburb = tempSuburb + "," + cboBox.options[i].value;
+					}
+				}
+				document.getElementById('ctl00_ContentPlaceHolder1_txtSuburb').value = tempSuburb;
+			}        
+		}
+	</script>
+	<!-- end of script -->
+
+    <!-- Injecting Google analytics code if needed -->
+    <reiq:ShowGoogleAnalytics runat="server" />
+    <!-- Redirecting to smartphones -->
+    <reiq:RedirectToSmartPhones runat="server" />
+</head>
+	
+<body>
+	<section class="container"><!-- CONTAINER --> 
+	    <header id="header">
+		  <section class="header-wrapper"><!-- HEADER WRAPPPER -->
+			<h1 id="logo"><a href="/">REIQ</a></h1>
+			<nav id="nav-top">
+				<!-- TOP NAVIGATION -->
+				<umbraco:Macro Alias="TopNavigation" runat="server" />
+				<!-- /TOP NAVIGATION -->
+			</nav>
+		  </section><!-- /HEADER WRAPPPER -->
+	    </header> 
+	
+		<asp:ContentPlaceHolder runat="server" ID="HomeSection">
+		</asp:ContentPlaceHolder>
+		
+		<section class="wrapper"><!-- WRAPPER -->
+			<section id="content"><!-- CONTENT --> 
+				<asp:ContentPlaceHolder runat="server" ID="ContentSection">
+				</asp:ContentPlaceHolder>
+			</section>
+			<!-- /CONTENT --> 
+		</section>
+		<!-- /WRAPPER -->
+		
+		
+		<!-- /FRONT CONTENT TAB --> 
+		<footer id="footer"><!-- FOOTER -->
+			<section class="footer-top"><!-- FOOTER TOP -->
+				<umbraco:Macro propertyAlias="footerLinksLine1" Alias="[Master]ShowFooterLinks" runat="server"></umbraco:Macro>
+				<br/><br/>
+				<umbraco:Macro propertyAlias="footerLinksLine2" Alias="[Master]ShowFooterLinks" runat="server"></umbraco:Macro>
+			</section><!-- /FOOTER TOP -->
+		  
+			<section class="footer-copyright"><!-- FOOTER COPYRIGHT -->
+				<umbraco:Macro Alias="[Master]ShowPartners" runat="server" />
+			</section><!-- FOOTER COPYRIGHT -->
+		</footer><!-- /FOOTER -->
+		<div class="clear"></div>
+	</section>
+    <div id="toTop">Back To Top</div>
+	<!-- /CONTAINER -->
+    <script type="text/javascript">
+        setTimeout(function () {
+            var a = document.createElement("script");
+            var b = document.getElementsByTagName("script")[0];
+            a.src = document.location.protocol + "//dnn506yrbagrg.cloudfront.net/pages/scripts/0014/1655.js?" + Math.floor(new Date().getTime() / 3600000);
+            a.async = true; a.type = "text/javascript"; b.parentNode.insertBefore(a, b)
+        }, 1);
+    </script>
+    <script>
+        $(window).scroll(function () {
+            if ($(this).scrollTop()) {
+                $('#toTop').fadeIn();
+            } else {
+                $('#toTop').fadeOut();
+            }
+        });
+
+        $('#toTop').on('click', function () {
+            //1 second of animation time
+            //html works for FFX but not Chrome
+            //body works for Chrome but not FFX
+            //This strange selector seems to work universally
+            $("html, body").animate({ scrollTop: "0px" }, 1000);
+        });
+    </script>
+    <reiq:InjectYandexMetrikaScript runat="server" />
+    <reiq:InjectGARemarketingScript runat="server" />
+</body>
+<!-- Remarketing script -->
+<script src="http://i.simpli.fi/dpx.js?cid=1534&action=100&segment=215586&m=1"></script>
+</html>
+</asp:Content>

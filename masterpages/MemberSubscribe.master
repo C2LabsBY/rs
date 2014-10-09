@@ -1,0 +1,385 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+	
+	<form name="aspnetForm" method="post" action="/member/subscribe" id="aspnetForm">
+	<table width="900" cellspacing="0" cellpadding="0">
+    	<tbody>
+			<tr>
+				<td valign="top" align="left">       
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+					<tbody>
+						<tr>
+						<td align="left"><h1>Create my property alert</h1></td>
+						</tr>
+						<tr>
+							<td align="left">
+								<a href="/member/home">« Go back to 'My REIQ' page</a>
+								<br><br>
+							 </td>
+						</tr>
+						<tr>
+							<td align="left">
+								Complete the form below and we will email you properties that match your criteria as they are entered.
+						
+							</td>
+						</tr>
+						<tr>
+							<td align="left">
+								<br>
+							   
+								<table width="100%" cellspacing="0" cellpadding="0" border="0">
+									<tbody>
+										<tr> 
+											<td>Property Alert's Name:</td>
+											<td><input type="text" style="width:250px;" id="ctl00_ContentPlaceHolder1_txtHuntName" name="ctl00$ContentPlaceHolder1$txtHuntName"></td>
+										</tr>
+										<tr> 
+											<td colspan="2"><font size="1">Give your property alert a name you can easily remember, e.g: the Suburb/ Region's name</font><br><br></td>
+										</tr>
+										<tr> 
+											<td>Property:</td>
+											<td rowspan="2">
+												<table border="0" id="ctl00_ContentPlaceHolder1_rdStatus">
+													<tbody>
+														<tr>
+															<td><input type="radio" checked="checked" value="fs" name="ctl00$ContentPlaceHolder1$rdStatus" id="ctl00_ContentPlaceHolder1_rdStatus_0"><label for="ctl00_ContentPlaceHolder1_rdStatus_0">For Sale</label></td>
+														</tr>
+														<tr>
+															<td><input type="radio" value="fr" name="ctl00$ContentPlaceHolder1$rdStatus" id="ctl00_ContentPlaceHolder1_rdStatus_1"><label for="ctl00_ContentPlaceHolder1_rdStatus_1">For Rent</label></td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+											<td colspan="2"> Price range :
+												<select id="ctl00_ContentPlaceHolder1_cboPriceLowS" name="ctl00$ContentPlaceHolder1$cboPriceLowS">
+													<option value="Any">-Price Low -</option>
+													<option value="1">$1</option>
+													<option value="100000">$100,000</option>
+													<option value="150000">$150,000</option>
+													<option value="200000">$200,000</option>
+													<option value="250000">$250,000</option>
+													<option value="300000">$300,000</option>
+													<option value="350000">$350,000</option>
+													<option value="400000">$400,000</option>
+													<option value="450000">$450,000</option>
+													<option value="500000">$500,000</option>
+													<option value="550000">$550,000</option>
+													<option value="600000">$600,000</option>
+													<option value="650000">$650,000</option>
+													<option value="700000">$700,000</option>
+													<option value="750000">$750,000</option>
+													<option value="800000">$800,000</option>
+													<option value="850000">$850,000</option>
+													<option value="900000">$900,000</option>
+													<option value="950000">$950,000</option>
+													<option value="1000000">$1 mn</option>
+													<option value="1250000">$1.25 mn</option>
+													<option value="1500000">$1.50 mn</option>
+													<option value="1750000">$1.75 mn</option>
+													<option value="2000000">$2 mn</option>
+													<option value="2500000">$2.50 mn</option>
+													<option value="3000000">$3 mn</option>				
+												</select> -
+												<select id="ctl00_ContentPlaceHolder1_cboPriceHighS" name="ctl00$ContentPlaceHolder1$cboPriceHighS">
+													<option value="Any">- Price High -</option>
+													<option value="100000">$100,000</option>
+													<option value="150000">$150,000</option>
+													<option value="200000">$200,000</option>
+													<option value="250000">$250,000</option>
+													<option value="300000">$300,000</option>
+													<option value="350000">$350,000</option>
+													<option value="400000">$400,000</option>
+													<option value="450000">$450,000</option>
+													<option value="500000">$500,000</option>
+													<option value="550000">$550,000</option>
+													<option value="600000">$600,000</option>
+													<option value="650000">$650,000</option>
+													<option value="700000">$700,000</option>
+													<option value="750000">$750,000</option>
+													<option value="800000">$800,000</option>
+													<option value="850000">$850,000</option>
+													<option value="900000">$900,000</option>
+													<option value="950000">$950,000</option>
+													<option value="1000000">$1 mn</option>
+													<option value="1250000">$1.25 mn</option>
+													<option value="1500000">$1.50 mn</option>
+													<option value="1750000">$1.75 mn</option>
+													<option value="2000000">$2 mn</option>
+													<option value="2500000">$2.50 mn</option>
+													<option value="30000000">$3 mn</option>
+													<option value="10000000">$3 mn+</option>				
+												</select>
+											</td>
+										</tr>	
+										<tr>
+											<td></td>
+											<td colspan="2"> Price range:
+												<select id="ctl00_ContentPlaceHolder1_cboPriceLowR" name="ctl00$ContentPlaceHolder1$cboPriceLowR">
+													<option value="Any">- Price Low -</option>
+													<option value="1">$1</option>
+													<option value="100">$100/week</option>
+													<option value="150">$150/week</option>
+													<option value="200">$200/week</option>
+													<option value="250">$250/week</option>
+													<option value="300">$300/week</option>
+													<option value="350">$350/week</option>
+													<option value="400">$400/week</option>
+													<option value="450">$450/week</option>
+													<option value="500">$500/week</option>
+													<option value="550">$550/week</option>
+													<option value="600">$600/week</option>
+													<option value="650">$650/week</option>
+													<option value="700">$700/week</option>
+													<option value="750">$750/week</option>
+													<option value="800">$800/week</option>
+													<option value="850">$850/week</option>
+													<option value="900">$900/week</option>
+													<option value="950">$950/week</option>
+													<option value="1000">$1000/week</option>
+													<option value="2000">$2000/week</option>				
+												</select> -
+												<select id="ctl00_ContentPlaceHolder1_cboPriceHighR" name="ctl00$ContentPlaceHolder1$cboPriceHighR">
+													<option value="Any">-Price High -</option>
+													<option value="100">$100/week</option>
+													<option value="150">$150/week</option>
+													<option value="200">$200/week</option>
+													<option value="250">$250/week</option>
+													<option value="300">$300/week</option>
+													<option value="350">$350/week</option>
+													<option value="400">$400/week</option>
+													<option value="450">$450/week</option>
+													<option value="500">$500/week</option>
+													<option value="550">$550/week</option>
+													<option value="600">$600/week</option>
+													<option value="650">$650/week</option>
+													<option value="700">$700/week</option>
+													<option value="750">$750/week</option>
+													<option value="800">$800/week</option>
+													<option value="850">$850/week</option>
+													<option value="900">$900/week</option>
+													<option value="950">$950/week</option>
+													<option value="1000">$1000/week</option>
+													<option value="10000">$2000/week</option>				
+												</select>
+											</td>
+										</tr>							
+										<tr>
+											<td>Type:</td>
+											<td colspan="3">
+												<table border="0" id="ctl00_ContentPlaceHolder1_rdType">
+													<tbody>
+														<tr>
+															<td><input type="radio" checked="checked" value="Residential" name="ctl00$ContentPlaceHolder1$rdType" id="ctl00_ContentPlaceHolder1_rdType_0"><label for="ctl00_ContentPlaceHolder1_rdType_0">Residential</label></td><td><input type="radio" value="Land" name="ctl00$ContentPlaceHolder1$rdType" id="ctl00_ContentPlaceHolder1_rdType_1"><label for="ctl00_ContentPlaceHolder1_rdType_1">Blocks of Land</label></td><td><input type="radio" value="Commercial" name="ctl00$ContentPlaceHolder1$rdType" id="ctl00_ContentPlaceHolder1_rdType_2"><label for="ctl00_ContentPlaceHolder1_rdType_2">Commercial</label></td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>	
+										<tr>
+											<td height="20" colspan="4"></td>
+										</tr>
+										<tr> 
+											<td>Bedrooms</td>
+											<td colspan="3">
+												<select id="ctl00_ContentPlaceHolder1_cboBeds" name="ctl00$ContentPlaceHolder1$cboBeds">
+													<option value="0">--  Any  --</option>
+													<option value="1">1 Bed +</option>
+													<option value="2">2 Beds +</option>
+													<option value="3">3 Beds +</option>
+													<option value="4">4 Beds +</option>									
+												</select>
+											</td>
+										</tr>	
+										<tr> 
+											<td>Bathrooms:</td>
+											<td colspan="3">
+												<select id="ctl00_ContentPlaceHolder1_cboBaths" name="ctl00$ContentPlaceHolder1$cboBaths">
+													<option value="0">--  Any  --</option>
+													<option value="1">1 Bath +</option>
+													<option value="2">2 Bath +</option>
+													<option value="3">3 Bath +</option>
+													<option value="4">4 Bath +</option>										
+												</select>
+											</td>
+										</tr>	
+										<tr> 
+											<td>Garaging for:</td>
+											<td colspan="3">
+												<select id="ctl00_ContentPlaceHolder1_cboGarage" name="ctl00$ContentPlaceHolder1$cboGarage">
+													<option value="Any">--  Any  --</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>				
+												</select> cars(s)
+											</td>
+										</tr>	
+									</tbody>
+								</table>
+								<table width="99%" cellspacing="0" cellpadding="0" border="0">
+									<tbody>
+										<tr>
+											<td height="20" colspan="4"></td>
+										</tr>	
+										<tr>
+											<td>Choose a <b>Region:</b></td>
+											<td colspan="3">
+										<!-- Region select -->
+												<select id="ctl00_ContentPlaceHolder1_cboRegion" name="ctl00$ContentPlaceHolder1$cboRegion">
+													<option value="Select a region">Select a region</option>
+													<option value="Brisbane - CBD">Brisbane - CBD</option>
+													<option value="Brisbane - Eastern Suburbs">Brisbane - Eastern Suburbs</option>
+													<option value="Brisbane - Northern Suburbs">Brisbane - Northern Suburbs</option>
+													<option value="Brisbane - Southern Suburbs">Brisbane - Southern Suburbs</option>
+													<option value="Brisbane - Western Suburbs">Brisbane - Western Suburbs</option>
+													<option value="Cairns">Cairns</option>
+													<option value="Central Coast">Central Coast</option>
+													<option value="Central Qld">Central Qld</option>
+													<option value="Far North Qld">Far North Qld</option>
+													<option value="Fraser Coast">Fraser Coast</option>
+													<option value="Gold Coast">Gold Coast</option>
+													<option value="Ipswich and Region">Ipswich and Region</option>
+													<option value="North Qld">North Qld</option>
+													<option value="Outer Northern Brisbane">Outer Northern Brisbane</option>
+													<option value="Outer Southern Brisbane">Outer Southern Brisbane</option>
+													<option value="South Qld">South Qld</option>
+													<option value="Sunshine Coast">Sunshine Coast</option>
+													<option value="Townsville and Mackay">Townsville and Mackay</option>
+												</select>
+										<!-- end of Region select -->
+											</td>	
+										</tr>
+										<tr>		
+											<td valign="top"><b>OR</b> <br><br>choose up to 5 suburbs<br>by double clicking on<br>the suburbs of your interest.</td>
+											<td colspan="3">
+												<table>
+													<tbody>
+														<tr>
+															<td>
+											<!-- Suburbs select -->
+																<select style="height:150px;" ondblclick="javascript:moveSelectedOptions(document.getElementById('ctl00_ContentPlaceHolder1_ListBox1'),document.getElementById('ctl00_ContentPlaceHolder1_ListBox2'),false)" id="ctl00_ContentPlaceHolder1_ListBox1" multiple="multiple" name="ctl00$ContentPlaceHolder1$ListBox1" size="4">
+														<!-- template doesn't save when all <options> are specified  -->
+																	<option value="6488">Abbeywood, 4613</option>
+																	<option value="6489">Abbotsford, 4670</option>
+																	<option value="6490">Abercorn, 4627</option>
+																	<option value="6491">Abergowrie, 4850</option>
+																	<option value="6492">Abingdon Downs, 4871</option>
+																	<option value="10443">ABINGDON DOWNS, 4892</option>
+																	<option value="6493">Abington, 4660</option>
+																	<option value="6494">Acacia Ridge, 4110</option>
+																	<option value="6495">Acland, 4401</option>
+																	<option value="6496">Adare, 4343</option>
+																	<option value="6497">Adavale, 4474</option>
+																	<option value="6498">Adelaide Park, 4703</option>
+																	<option value="6499">Advancetown, 4211</option>
+																	<option value="6500">Aeroglen, 4870</option>
+																	<option value="6501">Agnes Water, 4677</option>
+																	<option value="6502">Airdmillan, 4807</option>
+																	<option value="6503">Airlie Beach, 4802</option>
+																	<option value="6504">Airville, 4807</option>
+																	<option value="6505">Aitkenvale, 4814</option>
+																	<option value="10209">Alabama Hill, 4820</option>
+																	<option value="6506">Albany Creek, 4035</option>
+																	<option value="6507">Alberta, 4702</option>
+																	<option value="6508">Alberton, 4207</option>
+																	<option value="6509">Albion, 4010</option>
+																	<option value="6510">Alderley, 4051</option>
+																	<option value="6511">Aldershot, 4650</option>
+																	<option value="6512">Aldoga, 4694</option>
+																	<option value="6513">Alexandra, 4740</option>
+																	<option value="6514">Alexandra Headland, 4572</option>
+																	<option value="6515">Alexandra Hills, 4161</option>
+																	<option value="10389">ALEXANDRIA, 4825</option>
+																	<option value="6516">Algester, 4115</option>
+																	<option value="6517">Alice Creek, 4610</option>
+																	<option value="6518">Alice River, 4817</option>
+																	<option value="10047">Allan, 4370</option>
+																	<option value="6519">Allandale, 4310</option>
+																	<option value="6520">Allenstown, 4700</option>
+																	<option value="6521">Allenview, 4285</option>
+																	<option value="6522">Alligator Creek, 4740</option>
+																	<option value="10348">Alligator Creek, 4816</option>
+																	<option value="6523">Allingham, 4850</option>
+																</select>
+											<!-- end of Suburbs select -->
+															</td>
+															<td valign="middle" align="center" style="width:50px"></td>
+															<td>
+																<select style="height:150px;width:150px;" ondblclick="javascript:unpopulate(document.getElementById('ctl00_ContentPlaceHolder1_ListBox2'))" id="ctl00_ContentPlaceHolder1_ListBox2" multiple="multiple" name="ctl00$ContentPlaceHolder1$ListBox2" size="4"></select>
+															</td>
+															<td>Double click on the suburb to remove from the list</td>
+														</tr>
+													</tbody>
+												</table>
+												<input type="hidden" id="ctl00_ContentPlaceHolder1_txtSuburb" name="ctl00$ContentPlaceHolder1$txtSuburb">
+												<font color="red"></font>
+											</td>
+										</tr>	
+										<tr>
+											<td height="20" colspan="4"></td>
+										</tr>		
+										<tr> 
+											<td>Keep me posted for:</td>
+											<td colspan="4">
+												<table width="100%" cellspacing="0" cellpadding="0" border="0">
+													<tbody>
+														<tr>
+															<td>
+																<select id="ctl00_ContentPlaceHolder1_cboPosted" name="ctl00$ContentPlaceHolder1$cboPosted">
+																	<option value="Any">--  Any  --</option>
+																	<option value="1">1 month</option>
+																	<option value="2">2 months</option>
+																	<option value="3">3 months</option>
+																	<option value="6">6 months</option>
+																	<option value="0">Indefinitely</option>				
+																</select> 
+																from today
+															</td>		
+															<td></td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>								
+										<tr>
+											<td height="10" colspan="4"></td>
+										</tr>
+										<tr>
+											<td align="right" colspan="3"></td>
+											<td align="center"><input type="submit" class="searchbtn" id="ctl00_ContentPlaceHolder1_btnSubmit" onclick="return checkFormSubscribeHuntUpdate();" value="Submit" name="ctl00$ContentPlaceHolder1$btnSubmit"></td>
+										</tr>
+										<tr>
+											<td height="10" colspan="4"></td>
+										</tr>
+										<tr>
+											<td colspan="4"><p align="justify">This information is collected to contact you, or forward you, details of properties matching your selected criteria. Other than in the circumstances allowed under the privacy act of 1988 we do not disclose information of this kind to other parties. You can edit your alerts at time by logging back into 'My REIQ'.</p></td>
+										</tr>
+									</tbody>
+								</table>					
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</form>
+</asp:content>

@@ -1,0 +1,86 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+
+<table width="900" cellspacing="0" cellpadding="0">
+	<tbody>
+		<tr>
+			<td valign="top" align="left">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+					<tbody>
+						<tr>
+							<td align="left"><h1>"UserName here"'s Property Alert</h1></td>
+						</tr>
+						<tr>
+        					<td align="left">
+								<b><img width="19" height="19" align="absmiddle" title="back" src="/images/ahc/web/back.gif"> <a href="javascript:history.back(-1)">Back to Previous Page</a></b>
+								<br><br>
+							
+								<p><b>Bookmark this page and visit it as often as you like for the latest properties matching your criteria.</b></p>
+								<h4>Your request on Friday, 5 July 2013 was:</h4>           
+								<table cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr>
+											<td width="150">Property Status:</td>
+											<td>For Sale</td>
+										</tr>
+										<tr>
+											<td>Property Type:</td>
+											<td>Residential</td>
+										</tr>
+										<tr>
+											<td>Price Range:</td>
+											<td><span id="ctl00_ContentPlaceHolder1_Label1"></span> - <span id="ctl00_ContentPlaceHolder1_Label2"></span></td>											
+										</tr>
+										<tr>
+											<td>Bedrooms:</td>
+											<td>Any - Any</td>
+										</tr>
+										<tr>
+											<td>Bathrooms:</td>
+											<td>Any - Any</td>
+										</tr>
+										<tr>
+											<td>Garaging for:</td>
+											<td>Any</td>
+										</tr>
+										<tr>
+											<td>Region/Suburbs:</td>
+											<td>
+												"Abercorn, 4627"
+											</td>
+										</tr>
+										<tr>
+											<td>Subscription:</td>
+											<td>Indefinitely</td>
+										</tr>
+									</tbody>
+								</table>            
+								<br>								
+								<b>Sorry, but REIQ hasn't found any matching properties for you at the moment. Please come back later..</b>								 
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+	<br /><br />
+</asp:content>

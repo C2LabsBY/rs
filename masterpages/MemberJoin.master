@@ -1,0 +1,24 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/MemberJoin.ascx" TagPrefix="reiq" TagName="join" %>
+<%@ Register Src="~/usercontrols/MemberMenu.ascx" TagPrefix="reiq" TagName="menu" %>
+	
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+	<reiq:menu runat="server" />
+	<reiq:join runat="server" />
+</asp:content>

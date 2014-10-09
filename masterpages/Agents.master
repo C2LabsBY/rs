@@ -1,0 +1,37 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/HeadingAgency.ascx" TagPrefix="reiq" TagName="heading" %>
+<%@ Register Src="~/usercontrols/SideBarAgents.ascx" TagPrefix="reiq" TagName="sidebar" %>
+<%@ Register Src="~/usercontrols/OurTeam.ascx" TagPrefix="reiq" TagName="ourteam" %>
+<%@ Register Src="~/usercontrols/AgencyMainControl.ascx" TagPrefix="reiq" TagName="AgencyMainControl" %>
+<%@ Register Src="~/usercontrols/ContactAgency.ascx" TagPrefix="reiq" TagName="ContactAgency" %>
+	
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	<reiq:heading runat="server" />
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	<reiq:sidebar runat="server" />
+    <br />
+    <reiq:ContactAgency runat="server" />
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	<%--<a href="javascript:;" class="back"><span class="icons"></span>BACK TO PROPERTY LISTINGS</a>--%>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+	<reiq:AgencyMainControl runat="server" />
+    	
+	<!-- OUR TEAM -->
+	<reiq:ourteam ID="OurTeam" runat="server" />
+	<!-- /OUR TEAM -->
+	
+	<!--BEGIN: SEARCH TAB-->
+    	<!--macro here-->
+	<!--/END: SEARCH TAB-->
+	
+</asp:content>

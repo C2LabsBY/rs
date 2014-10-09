@@ -1,0 +1,10 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/Master.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/SuburbSearchStats.ascx" TagPrefix="reiq" TagName="SuburbSearchStats" %>
+
+<asp:content ID="Content5" ContentPlaceHolderId="ContentSection" runat="server">
+    <form id="Form1" runat="server">
+        <section class="main_thin">
+	        <reiq:SuburbSearchStats ID="SuburbSearchStats" runat="server" />
+        </section>
+    </form>
+</asp:content>

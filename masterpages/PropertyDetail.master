@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/HeadingProperty.ascx" TagPrefix="reiq" TagName="heading" %>
+<%@ Register Src="~/usercontrols/SideBarPropertyAgent.ascx" TagPrefix="reiq" TagName="agent" %>
+<%@ Register Src="~/usercontrols/Enquiry.ascx" TagPrefix="reiq" TagName="enq" %>
+<%@ Register Src="~/usercontrols/PropertyTopControl.ascx" TagPrefix="reiq" TagName="PropertyTopControl" %>
+<%@ Register Src="~/usercontrols/PropertyMainControl.ascx" TagPrefix="reiq" TagName="PropertyMainControl" %>
+<%@ Register Src="~/usercontrols/SideBarPropertyTopControl.ascx" TagPrefix="reiq" TagName="SideBarPropertyTopControl" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentHeader" Runat="Server">
+    <reiq:heading runat="server" />
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="SideBarTopControl" Runat="Server">
+     <reiq:SideBarPropertyTopControl ID="Heading1" runat="server" />
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="RightSideBar" Runat="Server">
+    <reiq:agent runat="server" />
+    <reiq:enq runat="server" />
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="MainDataTopControl" Runat="Server">
+    <reiq:PropertyTopControl ID="PropertyTopControl1" runat="server" />
+</asp:Content>
+
+<asp:Content ID="Content5" ContentPlaceHolderID="MainData" Runat="Server">
+    <reiq:PropertyMainControl ID="PropertyMainControl" runat="server" />
+</asp:Content>

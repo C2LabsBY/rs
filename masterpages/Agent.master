@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/Pagination.ascx" TagPrefix="reiq" TagName="pagination" %>
+<%@ Register Src="~/usercontrols/AgentPropertiesResult.ascx" TagPrefix="reiq" TagName="AgentPropertiesResult" %>
+<%@ Register Src="~/usercontrols/HeadingAgent.ascx" TagPrefix="reiq" TagName="heading" %>
+<%--<%@ Register Src="~/usercontrols/SideBarOneOfAgentListings.ascx" TagPrefix="reiq" TagName="oneoflistings" %>	--%>
+	
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	<reiq:heading runat="server" />
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	<%--<reiq:oneoflistings runat="server" />--%>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	<%--<a href="javascript:;" class="back"><span class="icons"></span>BACK TO PROPERTY LISTINGS</a> <span class="fright-block2"><a href="javascript:;" class="view-prop-map"><span class="icons"></span>VIEW PROPERTIES ON A MAP</a></span> --%>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+	<reiq:AgentPropertiesResult runat="server" PageSize="10" />
+    <reiq:pagination runat="server" PageSize="10" />
+</asp:content>

@@ -1,0 +1,21 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/ShowGoogleAnalytics.ascx" TagPrefix="reiq" TagName="ShowGoogleAnalytics" %>
+	
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+	
+	<link rel="stylesheet" type="text/css" href="/basemedia/css/reiq.css" media="all">
+	
+	<!-- Injecting Google analytics code if needed -->
+    <reiq:ShowGoogleAnalytics ID="ShowGoogleAnalytics1" runat="server" />
+	
+    <section class="header-wrapper-popup">
+        <span class="logo-popup"></span>
+    </section>
+    <section>
+        <h2 class="title-popup"><umbraco:Item ID="Item1" field="title" runat="server" /></h2>
+    </section>
+	<section class="content-popup" style="height:145px !important;">
+        <umbraco:Item ID="Item2" field="content" runat="server" />
+    </section>
+	
+</asp:Content>

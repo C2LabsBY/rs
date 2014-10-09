@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ContentMaster.master" AutoEventWireup="true" %>
+<%@ Register Src="~/usercontrols/Enquiry.ascx" TagPrefix="reiq" TagName="enq" %>
+<%@ Register Src="~/usercontrols/SuburbProfile.ascx" TagPrefix="reiq" TagName="SuburbProfile" %>
+<%@ Register Src="~/usercontrols/HeadingSuburb.ascx" TagPrefix="reiq" TagName="HeadingSuburb" %>
+	
+<asp:content ContentPlaceHolderId="ContentHeader" runat="server">
+	<!--BEGIN: CONTENT HEADER CMS-->
+		<header id="content-header" class="agent-header">
+		<h1><umbraco:Item field="sectionHeadingH1" stripParagraph="true" runat="server" /></h1>
+			<section class="agent-adv"><!-- AGENT ADV -->
+  	
+  			</section><!-- /AGENT ADV -->
+  	  	</header>
+	<!--/END: CONTENT HEADER CMS-->
+</asp:content>
+
+<asp:content ContentPlaceHolderId="SideBarTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="RightSideBar" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainDataTopControl" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="MainData" runat="server">
+	<reiq:SuburbProfile ID="SuburbProfile1" runat="server" />
+</asp:content>
