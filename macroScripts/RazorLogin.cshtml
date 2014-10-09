@@ -1,0 +1,112 @@
+﻿@using System.Web
+@using System.Web.Security
+@if (showLoginForm)
+{
+
+    <form method="post">
+        <section class="sidebar-form clearfix">
+            <br />
+            <ul class="form-view">
+                <li>
+                        <label for="name">Username:</label>
+                        <input type="text" id="username" name="username" />
+                    <div class="clear"></div>
+                </li>
+                <li style="width:100%">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" />
+                </li>
+                <li class="no-label">
+                    <div>
+                        <input type="submit" class="red-btn" id="submit" name="submit" value="login" />
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </form>
+}
+
+@if (showLogoutForm)
+{
+
+    <form method="post">
+        <input type="submit" id="submit" name="submit" value="logout" class="red-btn"/>
+    </form>
+}
+
+@if (showMessage)
+{
+
+    <p>@message</p>
+}
+
+<style type="text/css">
+    p, label {
+        color: black;
+    }
+</style>
+
+@functions{
+
+    private bool showLoginForm;
+    private bool showLogoutForm;
+    private bool showMessage;
+    private string message;
+
+    protected override void InitializePage()
+    {
+
+        var isSubmitLogin = (IsPost && Request["submit"] == "login");
+        var isSubmitLogout = (IsPost && Request["submit"] == "logout");
+        var isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated;
+        var currentUser = Membership.GetUser();
+        var requestedUrl = Request.Url.PathAndQuery.ToString(); // default get back to same page after valid login;
+        if (Request["ReturnUrl"] != null)
+        {
+            requestedUrl = Request["ReturnUrl"];
+        }
+
+        if (isLoggedIn)
+        {
+            if (!isSubmitLogout)
+            {
+                message = "Logged in : " + currentUser.UserName;
+                showMessage = true;
+                showLogoutForm = true;
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                Response.Redirect(requestedUrl);
+            }
+        }
+        else
+        {
+            if (!isSubmitLogin)
+            {
+                showLoginForm = true;
+            }
+            else
+            {
+                string username = Request["username"];
+                string password = Request["password"];
+                if (Membership.ValidateUser(username, password))
+                {
+                    // RedirectFromLoginPage does not work that good within the Umbraco context
+                    // FormsAuthentication.RedirectFromLoginPage(username, true);
+
+                    FormsAuthentication.SetAuthCookie(username, true);
+
+                    // Redirect to / refresh the requested page
+                    Response.Redirect(requestedUrl);
+                }
+                else
+                {
+                    message = "Login failed for " + username;
+                    showMessage = true;
+                    showLoginForm = true;
+                }
+            }
+        }
+    }
+}
