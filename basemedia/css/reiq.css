@@ -1,0 +1,149 @@
+﻿h3 {
+	font-size:16px;
+	color:#000000;
+	font-family:'Signika',sans-serif;
+	margin:0 0 10px 0;
+}
+h4{
+	font-size:14px;
+	color:#000000;
+	font-family:'Signika',sans-serif;
+	margin:0 0 10px 0;
+}
+h5{
+	font-size:13px;
+	color:#000000;
+	font-family:'Signika',sans-serif;
+	margin:0 0 10px 0;
+}
+h6{
+	font-size:12px;
+	color:#000000;
+	font-family:'Signika',sans-serif;
+	margin:0 0 10px 0;
+}
+
+.front-search-tab {
+    width: 483px; /*style.css:234*/
+}
+	
+.form-view h3{margin:0px; padding:0px 0px 10px 0px; color:#FFF; font-family:Arial, Helvetica, sans-serif; font-size:14px;}/*style.css:719 */
+
+.pro-detail-tab-sidebar h3 {
+    font-size:16px;
+	color:#000000;
+	font-family:'Signika',sans-serif;
+	margin:0 0 5px 0;
+ }
+
+.sidebar-agent-detail h3 {/*style.css:800 */
+	font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+
+ }
+
+.featured-property-block .title { /*style.css:1074 */
+	font-family:Arial, Helvetica, sans-serif;
+	margin: 0;
+ }
+
+
+table.alternating {border-bottom:3px solid #ba002f; margin:0 0 30px 0;}
+table.alternating th{background:#404040; color:#fff; font-weight:normal; text-transform:uppercase;}
+table.alternating th, 
+table.alternating td{width:50%; padding:10px 10px; vertical-align:middle; text-align:left;}
+table.alternating td, 
+table.alternating td {border-right:1px solid #999999;}
+table.alternating td:last-child, 
+table.alternating td.last {border-right:0 !important; }
+table.alternating tr.odd {background:#f2f2f2;}
+table.alternating tr.even {background:#fffefe;}
+
+.textCapitalize {text-transform:capitalize;}
+
+/* price slider */
+div.slider_track
+{
+	position: relative;
+	width: 198px;
+	height: 18px;
+	
+	
+	background-image:url(/images/SearchMapImages/slider_back.gif);
+	background-repeat:no-repeat;
+	background-position:left;
+}
+div.slider_handle
+{
+	position: absolute;
+	width: 16px;
+	height: 18px;
+	border: 0;
+	
+	background-image:url(/images/SearchMapImages/slider_button.gif);
+	background-position:left;
+	background-repeat:no-repeat;
+	cursor: pointer;
+}
+
+div.heading-iframe header {
+    margin-bottom: 0px !important;
+}
+
+/*-- BUTTON --*/
+a.red-btn{
+    display:block;
+	color:#fff;
+	font-family: 'Signika', sans-serif;
+	font-weight:400;
+	font-size:16px;
+	text-transform:uppercase;
+	background:#ba002f;
+	width:119px;
+	border:0;
+	padding:0;
+	cursor:pointer;
+	outline:none;
+    text-align:center;
+    padding-top: 4px;
+    padding-bottom: 3px;
+}
+
+/* POP-UP PAGES*/
+.header-wrapper-popup {
+    height: 51px;
+    width: auto;
+    margin: 0 auto;
+    background: #464646;
+}
+h1#logo-popup {
+    float: left;
+    width: 205px;
+    height: 59px;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+span.logo-popup {
+    display: block;
+    width: 205px;
+    height: 59px;
+    background: url(images/reiq-sprite.png) no-repeat left top;
+}
+.title-popup {
+    font-family: 'Signika', sans-serif;
+    font-size: 17px;
+    color: #161616;
+    text-transform: uppercase;
+    line-height: 40px;
+    background: #bfbfbf;
+    padding: 0 10px;
+    margin: 15px 0 15px 0;
+    display: block;
+    font-weight: normal;
+}
+.content-popup {
+    height: 225px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

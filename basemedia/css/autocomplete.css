@@ -1,0 +1,73 @@
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+  margin-bottom: 0;
+}
+
+.tt-hint {
+  font-family:Arial, Helvetica, sans-serif;
+	height:26px;
+	color:#D1D0CE;
+	font-size:12px;
+	background:#fff;
+	padding:0 5px;
+	border:1px solid #555555;
+	outline:none;
+	width:447px;
+}
+
+.prop_form input.tt-hint {
+    width: 417px !important;
+}
+
+.tt-dropdown-menu {
+  min-width: 300px;
+  margin-top: 2px;
+  padding: 5px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+}
+
+.tt-suggestion {
+  display: block;
+  padding: 3px 20px;
+}
+
+.tt-suggestion.tt-is-under-cursor {
+  color: #fff;
+  background-color: #0081c2;
+    background-repeat: repeat-x;
+    background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+}
+
+.tt-suggestion.tt-is-under-cursor a {
+  color: #fff;
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+.tt-dataset-Suburbs {
+  float: left;
+  max-height: 400px;
+  overflow-x: auto;
+}
+
+.tt-dataset-Regions {
+  float: right;
+}
+
+
+/* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */

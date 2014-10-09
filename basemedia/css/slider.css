@@ -1,0 +1,163 @@
+#slider ul, #slider li,
+	#slider2 ul, #slider2 li,
+	#property-slider ul, #property-slider ul li{
+		margin:0;
+		padding:0;
+		list-style:none;
+		}
+	#slider2{margin-top:1em;}
+	#slider li, #slider2 li{ 
+		/* 
+			define width and height of list item (slide)
+			entire slider area will adjust according to the parameters provided here
+		*/ 
+		width:696px;
+		height:241px;
+		overflow:hidden; 
+		}	
+	#prevBtn, #nextBtn,
+	#slider1next, #slider1prev{ 
+		display:block;
+		width:30px;
+		height:77px;
+		position:absolute;
+		left:-30px;
+		top:71px;
+		z-index:1000;
+		}	
+	#nextBtn, #slider1next{ 
+		left:696px;
+		}														
+	#prevBtn a, #nextBtn a,
+	#slider1next a, #slider1prev a{  
+		display:block;
+		position:relative;
+		width:30px;
+		height:77px;
+		background:url(../images/btn_prev.gif) no-repeat 0 0;	
+		}	
+	#nextBtn a, #slider1next a{ 
+		background:url(../images/btn_next.gif) no-repeat 0 0;	
+		}	
+		
+	/* numeric controls */	
+
+	ol#controls{
+		margin:1em 0;
+		padding:0;
+		height:28px;	
+		}
+	ol#controls li{
+		margin:0 10px 0 0; 
+		padding:0;
+		float:left;
+		list-style:none;
+		height:28px;
+		line-height:28px;
+		}
+	ol#controls li a{
+		float:left;
+		height:28px;
+		line-height:28px;
+		border:1px solid #ccc;
+		background:#DAF3F8;
+		color:#555;
+		padding:0 10px;
+		text-decoration:none;
+		}
+	ol#controls li.current a{
+		background:#5DC9E1;
+		color:#fff;
+		}
+	ol#controls li a:focus, #prevBtn a:focus, #nextBtn a:focus{outline:none;}
+	
+/*-- --*/
+.property-slider-outer {
+	margin:0 0 30px 0;
+}
+.property-slider-outer,
+.property-slider-outer #property-slider {
+	position:relative;
+	
+}
+#property-slider{
+	width:640px;
+	height:480px !important;
+}
+
+.property-slider-outer #controls {
+	position:absolute;
+	margin:0;
+	height:20px;
+	bottom:10px;
+	right:10px; 
+	padding:5px;
+	background:url(images/slider-control-bg.png) repeat left top;
+}
+.property-slider-outer #controls li,
+.property-slider-outer ol#controls li a{
+	background:none;
+	border:0;
+	line-height:normal;
+	padding:0;
+	height:auto;
+}
+.property-slider-outer #controls li{
+	margin:0 4px 0 0;
+}
+.property-slider-outer ol#controls li a {
+	padding:2px 5px;
+	color:#727272;
+	font-weight:bold;
+}
+.property-slider-outer ol#controls li.current  a{
+	color:#fff;
+}
+
+.gallaryController {
+	position:absolute;
+	margin:0;
+	height:20px;
+	line-height:20px;
+	bottom:2px;
+	right:2px; 
+	padding:5px 33px;
+	background:url(images/slider-control-bg.png) repeat left top;
+}
+#galleryStatus {
+	color:#fff;
+	font-weight:bold;
+}
+.gallaryController #slider1prev,
+.gallaryController #slider1next{
+	position:absolute;
+	top:2px;
+}
+.gallaryController #slider1prev,
+.gallaryController #slider1next,
+.gallaryController #slider1prev a,
+.gallaryController #slider1next a{
+	width:22px;
+	height:24px;
+}
+.gallaryController #slider1prev a,
+.gallaryController #slider1next a{
+	text-indent:-9999px;
+	background:url(images/reiq-sprite.png) no-repeat left top;	
+}
+.gallaryController #slider1prev a {
+	background-position:-108px -89px;
+}
+.gallaryController #slider1next a {
+	background-position:-131px -89px;
+}
+
+.gallaryController #slider1prev{
+	left:5px  !important;
+	margin:0;
+}
+.gallaryController #slider1next{
+	right:5px !important;
+	left:inherit !important;
+	margin:0;
+}

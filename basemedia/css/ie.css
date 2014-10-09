@@ -1,0 +1,33 @@
+/*-- TOP NAVIGATION --*/
+nav#nav-top ul li a {
+	/*font-size:12px;*/
+	letter-spacing:-0.5px;
+}
+
+/*-- FRONT PAGE TOP TAB --*/
+#form-tab .nav li a{
+	font-size:16px;
+	padding: 0 19px;
+}
+#form-tab .nav li.last a{
+	padding:0 19px;
+}
+
+/*-- ie7 --*/
+
+*+html .front-page-top-block {
+	float:none;
+}
+
+*+html #form-tab ul li a.current{
+	margin-top:0;
+}
+*+html #fr-content-tab .nav li {
+	float:left;
+}
+*+html #fr-content-tab .nav li a.current {
+	margin-top:0;
+}
+*+html a.read-more {
+	width:90px;
+}

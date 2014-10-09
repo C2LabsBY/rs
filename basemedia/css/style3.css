@@ -1,0 +1,146 @@
+.main_thin {
+	width: 800px;
+	margin: 0 auto;
+	padding-top: 50px;
+}
+
+h2, h3 {
+	text-transform:uppercase;
+	font-family: 'Titillium Web', sans-serif;
+	font-size:17px;
+	font-weight:600;
+	letter-spacing:1.5px;
+	color:#000;
+	background-color:#bfbfbf;
+	padding:7px 30px;
+}
+
+footer {
+	clear:both;
+	margin:auto;
+	width:auto;
+	padding-top:50px;	
+}
+
+.foot_h {
+	text-align: center;
+	background-color:#404040;
+	padding:25px 0;
+	border-top:50px solid #ba002f;
+}
+
+.foot_s {
+	text-align: center;
+	padding:5px 0;
+}
+
+label {
+	font-family: 'Titillium Web', sans-serif;
+	font-size:14px;
+	font-weight:400;
+	color:#000;
+}
+
+.full_width {
+	width:100%;
+}
+
+.button {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fafafa), color-stop(1, #e5e5e5) );
+	background:-moz-linear-gradient( center top, #fafafa 5%, #e5e5e5 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#e5e5e5');
+	background-color:#e3e3e3;
+	border: 1px solid #b6b6b6;
+	height:28px;
+	text-decoration:none;
+	text-transform:uppercase;
+	font-family: 'Titillium Web', sans-serif;
+	font-size:14px;
+	font-weight:600;
+	color:#555;
+	padding:0 15px;
+}
+
+.table_main {
+	border-collapse: collapse;
+	width:100%;
+	border:0px;
+	margin:0px;
+}
+
+.table_b {
+	font-family: 'Titillium Web', sans-serif;
+	font-size:15px;
+	font-weight:600;
+	color:#464646;
+}
+
+.table_h {
+	background-color:#464646;
+	font-family: 'Titillium Web', sans-serif;
+	font-size:14px;
+	font-weight:400;
+	color:#fff;
+}
+
+.table_f {
+	background-color:#464646;
+	font-family: 'Titillium Web', sans-serif;
+	font-size:14px;
+	font-weight:700;
+	color:#fff;
+}
+
+.table_r {
+	font-family: 'Titillium Web', sans-serif;
+	font-size:15px;
+	font-weight:600;
+	color:#464646;
+	background-color:#f1f1f1;
+}
+
+.table_d {
+	padding:8px 25px;
+}
+
+.table_d1 {
+	padding:11px 25px;
+	border-bottom:solid 1px #ddd;
+}
+
+.table_d3 {
+	padding:1px 25px;
+}
+
+.cen {
+	text-align: center;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.pagination a, .pagination strong {
+    display: inline-block;
+    margin-right: 3px;
+    padding: 0 5px;
+    text-decoration: none;
+}
+
+.pagination a {
+	color: #bfbfbf;
+}
+
+.pagination a:hover {
+    color: #fff;
+}
+
+.pagination strong {
+    color: #fff;
+}
+
+.search_inputs {
+	display:inline-block;
+	padding:15px 0 10px 0px;
+	width:180px;
+}
