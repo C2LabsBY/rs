@@ -25,6 +25,20 @@ namespace REIQ.Access
             }
         }
 
+        //Get any property from id. "Any" means include Sold property and no matter which values of isWebDisplay or golive.
+        public static Entities.Property GetAnyFromPropertyId(int propertyId)
+        {
+            using (var conn = Data.CreateConnection())
+            {
+                return conn.Query<Entities.Property>(
+                    @"
+                    SELECT      *    
+                    FROM        tblProperty p WITH (NOLOCK)
+                    WHERE       p.pID = @pID;",
+                    new { pID = propertyId }).FirstOrDefault();
+            }
+        }
+
         //get property for security property info page
         public static Entities.Property SecurityGetFromPropertyId(int propertyId)
         {
@@ -77,7 +91,7 @@ namespace REIQ.Access
         /// <summary>
         /// Gets only the ids of the properties we've searched for
         /// </summary>
-        public static IEnumerable<int> Search(REIQ.Enum.SearchType searchType, IEnumerable<string> propertyTypes, bool excludeUnderOffer, bool includeSurroundingSuburbs, bool onlyIfOpenHome, string keyword, int minPrice, int maxPrice, int numBedrooms, REIQ.Enum.SortOptions sortOption, int acId = 0)
+        public static IEnumerable<int> Search(REIQ.Enum.SearchType searchType, IEnumerable<string> propertyTypes, bool excludeUnderOffer, bool includeSurroundingSuburbs, bool onlyIfOpenHome, string keyword, int minPrice, int maxPrice, int numBedrooms, int numBathrooms, REIQ.Enum.SortOptions sortOption, int acId = 0)
         {
             // computed values from keyword
             Entities.Suburb suburb = null;      // suburbing matching search keyword
@@ -139,12 +153,16 @@ namespace REIQ.Access
                     Int32 potentialPropertyID = 0;
                     if (Int32.TryParse(keyword, out potentialPropertyID))//To avoid throwing of errors if the number is very big like "12234456677"
                     {
+                        //get any property
                         using (var conn = Data.CreateConnection())
                         {
-                            property = conn.Query<Entities.Property>("SELECT * FROM tblProperty WITH (NOLOCK) WHERE pId = @pID and golive = 0 and isWebDisplay = 1", new { pID = potentialPropertyID }).FirstOrDefault();
+                            property = conn.Query<Entities.Property>("SELECT * FROM tblProperty WITH (NOLOCK) WHERE pId = @pID", new { pID = potentialPropertyID }).FirstOrDefault();
                         }
 
                         if (property == null) keyword = String.Empty;
+
+                        //checking if property is hidden for some reason and make redirection in that case
+                        if (property != null) REIQ.Helpers.PropertyHelper.CheckIfHidden(property);
                     }
                 }
                 else // check to see if this is the name of a suburb or region
@@ -185,7 +203,7 @@ namespace REIQ.Access
                 //return Enumerable.Empty<int>();
 
                 //Street Search
-                IEnumerable<int> streetSearchList = TryStreetSearch(searchType, propertyTypes, excludeUnderOffer, includeSurroundingSuburbs, onlyIfOpenHome, keyword.Replace(",", " "), minPrice, maxPrice, numBedrooms, sortOption);
+                IEnumerable<int> streetSearchList = TryStreetSearch(searchType, propertyTypes, excludeUnderOffer, includeSurroundingSuburbs, onlyIfOpenHome, keyword.Replace(",", " "), minPrice, maxPrice, numBedrooms, numBathrooms, sortOption);
                 if (streetSearchList.Count() > 0) return streetSearchList;
             }
             
@@ -314,6 +332,11 @@ namespace REIQ.Access
             {
                 query.AppendLine("AND COALESCE(p.numBedrooms, 0) >= @NumBedrooms");
             }
+            
+            if (numBathrooms > 0)
+            {
+                query.AppendLine("AND COALESCE(p.numBathrooms, 0) >= @NumBathrooms");
+            }
 
             // price filter
             if (minPrice > 0)
@@ -369,6 +392,7 @@ namespace REIQ.Access
                     MinPrice = minPrice,
                     MaxPrice = maxPrice,
                     NumBedrooms = numBedrooms,
+                    NumBathrooms = numBathrooms,
                     PropertyTypes = propertyTypes,
                     Status = status,
                     SuburbIds = suburbIds
@@ -475,7 +499,7 @@ namespace REIQ.Access
 
         #region StreetSearch
 
-        public static IEnumerable<int> TryStreetSearch(REIQ.Enum.SearchType searchType, IEnumerable<string> propertyTypes, bool excludeUnderOffer, bool includeSurroundingSuburbs, bool onlyIfOpenHome, string keyword, int minPrice, int maxPrice, int numBedrooms, REIQ.Enum.SortOptions sortOption)
+        public static IEnumerable<int> TryStreetSearch(REIQ.Enum.SearchType searchType, IEnumerable<string> propertyTypes, bool excludeUnderOffer, bool includeSurroundingSuburbs, bool onlyIfOpenHome, string keyword, int minPrice, int maxPrice, int numBedrooms, int numBathrooms, REIQ.Enum.SortOptions sortOption)
         {
             //Try search by address
             String rdNum = String.Empty;
@@ -620,6 +644,10 @@ namespace REIQ.Access
             {
                 queryFilterString.AppendLine("AND COALESCE(p.numBedrooms, 0) >= @NumBedrooms");
             }
+            if (numBathrooms > 0)
+            {
+                queryFilterString.AppendLine("AND COALESCE(p.numBathrooms, 0) >= @NumBathrooms");
+            }
 
             // price filter
             if (minPrice > 0)
@@ -662,106 +690,108 @@ namespace REIQ.Access
                 if (!String.IsNullOrEmpty(foundStreetName) && !String.IsNullOrEmpty(foundSuburb))
                 {
                     if (!String.IsNullOrEmpty(foundStreetType) && !String.IsNullOrEmpty(rdNum))
-                        list = DoStreetSearch_By_Suburb_rdNum_strName_strType(queryFilterString.ToString(), foundSuburb, rdNum, foundStreetName, foundStreetType, status, minPrice, maxPrice, numBedrooms, propertyTypes);
+                        list = DoStreetSearch_By_Suburb_rdNum_strName_strType(queryFilterString.ToString(), foundSuburb, rdNum, foundStreetName, foundStreetType, status, minPrice, maxPrice, numBedrooms, numBathrooms, propertyTypes);
 
                     if (!(list.Count() > 0))
                     {
                         if (!String.IsNullOrEmpty(foundStreetType))
-                            list = DoStreetSearch_By_Suburb_strName_strType(queryFilterString.ToString(), foundSuburb, foundStreetName, foundStreetType, status, minPrice, maxPrice, numBedrooms, propertyTypes);
+                            list = DoStreetSearch_By_Suburb_strName_strType(queryFilterString.ToString(), foundSuburb, foundStreetName, foundStreetType, status, minPrice, maxPrice, numBedrooms, numBathrooms, propertyTypes);
                     }
 
                     if (!(list.Count() > 0))
-                        list = DoStreetSearch_By_Suburb_strName(queryFilterString.ToString(), foundSuburb, foundStreetName, status, minPrice, maxPrice, numBedrooms, propertyTypes);
+                        list = DoStreetSearch_By_Suburb_strName(queryFilterString.ToString(), foundSuburb, foundStreetName, status, minPrice, maxPrice, numBedrooms, numBathrooms, propertyTypes);
 
                     if (!(list.Count() > 0))
-                        list = DoStreetSearch_By_Suburb(queryFilterString.ToString(), foundSuburb, status, minPrice, maxPrice, numBedrooms, propertyTypes);
+                        list = DoStreetSearch_By_Suburb(queryFilterString.ToString(), foundSuburb, status, minPrice, maxPrice, numBedrooms, numBathrooms, propertyTypes);
                 }
             }
             //Get Property via Suburb if Street name was not found
             if (String.IsNullOrEmpty(foundStreetName))
-                list = DoStreetSearch_By_Suburb(queryFilterString.ToString(), foundSuburb, status, minPrice, maxPrice, numBedrooms, propertyTypes);
+                list = DoStreetSearch_By_Suburb(queryFilterString.ToString(), foundSuburb, status, minPrice, maxPrice, numBedrooms, numBathrooms, propertyTypes);
 
             //Get Property via Street name if suburb was not found
             if (String.IsNullOrEmpty(foundSuburb))
             {
                 //get property via Street name and Street num and Street type
                 if (!String.IsNullOrEmpty(foundStreetType) && !String.IsNullOrEmpty(rdNum))
-                    list = DoStreetSearch_By_rdNum_strName_strType(queryFilterString.ToString(), rdNum, foundStreetName, foundStreetType, status, minPrice, maxPrice, numBedrooms, propertyTypes);
+                    list = DoStreetSearch_By_rdNum_strName_strType(queryFilterString.ToString(), rdNum, foundStreetName, foundStreetType, status, minPrice, maxPrice, numBedrooms, numBathrooms, propertyTypes);
 
                 //get property via Street name and Street type
                 if (!String.IsNullOrEmpty(foundStreetType))
-                    list = DoStreetSearch_By_strName_strType(queryFilterString.ToString(), foundStreetName, foundStreetType, status, minPrice, maxPrice, numBedrooms, propertyTypes);
+                    list = DoStreetSearch_By_strName_strType(queryFilterString.ToString(), foundStreetName, foundStreetType, status, minPrice, maxPrice, numBedrooms, numBathrooms, propertyTypes);
 
                 //get property via Street name if nothing found before
                 if (!(list.Count() > 0))
-                    list = DoStreetSearch_By_strName(queryFilterString.ToString(), foundStreetName, status, minPrice, maxPrice, numBedrooms, propertyTypes);
+                    list = DoStreetSearch_By_strName(queryFilterString.ToString(), foundStreetName, status, minPrice, maxPrice, numBedrooms, numBathrooms, propertyTypes);
             }
 
             return list;
             #endregion
         }
 
-        private static IEnumerable<Int32> DoStreetSearch_By_Suburb_rdNum_strName_strType(String queryFilterString, String foundSuburb, String rdNum, String foundStreetName, String foundStreetType, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, IEnumerable<String> propertyTypes)
+        private static IEnumerable<Int32> DoStreetSearch_By_Suburb_rdNum_strName_strType(String queryFilterString, String foundSuburb, String rdNum, String foundStreetName, String foundStreetType, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, Int32 numBathrooms, IEnumerable<String> propertyTypes)
         {
             using (var conn = Data.CreateConnection())
             {
                 return conn.Query<Int32>(
-                                   @"
-                                SELECT      p.pid   
-                                FROM        tblProperty p WITH (NOLOCK)
-                                WHERE       p.suburb = @suburb
-                                            AND rdNum LIKE @rdNum
-                                            AND p.rdName LIKE @rdName
-                                            AND p.rdType LIKE @rdType
-                                            AND p.status IN @status
-                                            AND p.isWebDisplay = 1
-                                            AND p.goLive = 0
-                                            AND p.hideAHC = 0" + queryFilterString.ToString(),
-                               new
-                               {
-                                   suburb = foundSuburb,
-                                   rdNum = "%" + rdNum + "%",
-                                   rdName = "%" + foundStreetName + "%",
-                                   rdType = "%" + foundStreetType + "%",
-                                   status = status,
-                                   MinPrice = minPrice,
-                                   MaxPrice = maxPrice,
-                                   NumBedrooms = numBedrooms,
-                                   PropertyTypes = propertyTypes
-                               });
+                        @"
+                    SELECT      p.pid   
+                    FROM        tblProperty p WITH (NOLOCK)
+                    WHERE       p.suburb = @suburb
+                                AND rdNum LIKE @rdNum
+                                AND p.rdName LIKE @rdName
+                                AND p.rdType LIKE @rdType
+                                AND p.status IN @status
+                                AND p.isWebDisplay = 1
+                                AND p.goLive = 0
+                                AND p.hideAHC = 0" + queryFilterString.ToString(),
+                    new
+                    {
+                        suburb = foundSuburb,
+                        rdNum = "%" + rdNum + "%",
+                        rdName = "%" + foundStreetName + "%",
+                        rdType = "%" + foundStreetType + "%",
+                        status = status,
+                        MinPrice = minPrice,
+                        MaxPrice = maxPrice,
+                        NumBedrooms = numBedrooms,
+                        NumBathrooms = numBathrooms,
+                        PropertyTypes = propertyTypes
+                    });
             }
         }
 
-        private static IEnumerable<Int32> DoStreetSearch_By_Suburb_strName_strType(String queryFilterString, String foundSuburb, String foundStreetName, String foundStreetType, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, IEnumerable<String> propertyTypes)
+        private static IEnumerable<Int32> DoStreetSearch_By_Suburb_strName_strType(String queryFilterString, String foundSuburb, String foundStreetName, String foundStreetType, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, Int32 numBathrooms, IEnumerable<String> propertyTypes)
         {
             using (var conn = Data.CreateConnection())
             {
                 return conn.Query<Int32>(
-                                   @"
-                                    SELECT      p.pid   
-                                    FROM        tblProperty p WITH (NOLOCK)
-                                    WHERE       p.suburb = @suburb
-                                                AND p.rdName LIKE @rdName
-                                                AND p.rdType LIKE @rdType
-                                                AND p.status IN @status
-                                                AND p.isWebDisplay = 1
-                                                AND p.goLive = 0
-                                                AND p.hideAHC = 0" + queryFilterString.ToString(),
-                               new
-                               {
-                                   suburb = foundSuburb,
-                                   rdName = "%" + foundStreetName + "%",
-                                   rdType = "%" + foundStreetType + "%",
-                                   status = status,
-                                   MinPrice = minPrice,
-                                   MaxPrice = maxPrice,
-                                   NumBedrooms = numBedrooms,
-                                   PropertyTypes = propertyTypes
-                               });
+                    @"
+                    SELECT      p.pid   
+                    FROM        tblProperty p WITH (NOLOCK)
+                    WHERE       p.suburb = @suburb
+                                AND p.rdName LIKE @rdName
+                                AND p.rdType LIKE @rdType
+                                AND p.status IN @status
+                                AND p.isWebDisplay = 1
+                                AND p.goLive = 0
+                                AND p.hideAHC = 0" + queryFilterString.ToString(),
+                new
+                {
+                    suburb = foundSuburb,
+                    rdName = "%" + foundStreetName + "%",
+                    rdType = "%" + foundStreetType + "%",
+                    status = status,
+                    MinPrice = minPrice,
+                    MaxPrice = maxPrice,
+                    NumBedrooms = numBedrooms,
+                    NumBathrooms = numBathrooms,
+                    PropertyTypes = propertyTypes
+                });
             }
         }
         
-        private static IEnumerable<Int32> DoStreetSearch_By_Suburb_strName(String queryFilterString, String foundSuburb, String foundStreetName, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, IEnumerable<String> propertyTypes)
+        private static IEnumerable<Int32> DoStreetSearch_By_Suburb_strName(String queryFilterString, String foundSuburb, String foundStreetName, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, Int32 numBathrooms, IEnumerable<String> propertyTypes)
         {
             using (var conn = Data.CreateConnection())
             {
@@ -783,12 +813,13 @@ namespace REIQ.Access
                                    MinPrice = minPrice,
                                    MaxPrice = maxPrice,
                                    NumBedrooms = numBedrooms,
+                                   NumBathrooms = numBathrooms,
                                    PropertyTypes = propertyTypes
                                });
             }
         }
 
-        private static IEnumerable<Int32> DoStreetSearch_By_Suburb(String queryFilterString, String foundSuburb, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, IEnumerable<String> propertyTypes)
+        private static IEnumerable<Int32> DoStreetSearch_By_Suburb(String queryFilterString, String foundSuburb, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, Int32 numBathrooms, IEnumerable<String> propertyTypes)
         {
             using (var conn = Data.CreateConnection())
             {
@@ -808,12 +839,13 @@ namespace REIQ.Access
                            MinPrice = minPrice,
                            MaxPrice = maxPrice,
                            NumBedrooms = numBedrooms,
+                           NumBathrooms = numBathrooms,
                            PropertyTypes = propertyTypes
                        });
             }
         }
         
-        private static IEnumerable<Int32> DoStreetSearch_By_rdNum_strName_strType(String queryFilterString, String rdNum, String foundStreetName, String foundStreetType, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, IEnumerable<String> propertyTypes)
+        private static IEnumerable<Int32> DoStreetSearch_By_rdNum_strName_strType(String queryFilterString, String rdNum, String foundStreetName, String foundStreetType, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, Int32 numBathrooms, IEnumerable<String> propertyTypes)
         {
             using (var conn = Data.CreateConnection())
             {
@@ -837,12 +869,13 @@ namespace REIQ.Access
                                MinPrice = minPrice,
                                MaxPrice = maxPrice,
                                NumBedrooms = numBedrooms,
+                               NumBathrooms = numBathrooms,
                                PropertyTypes = propertyTypes
                            });
             }
         }
 
-        private static IEnumerable<Int32> DoStreetSearch_By_strName_strType(String queryFilterString, String foundStreetName, String foundStreetType, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, IEnumerable<String> propertyTypes)
+        private static IEnumerable<Int32> DoStreetSearch_By_strName_strType(String queryFilterString, String foundStreetName, String foundStreetType, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, Int32 numBathrooms, IEnumerable<String> propertyTypes)
         {
             using (var conn = Data.CreateConnection())
             {
@@ -864,12 +897,13 @@ namespace REIQ.Access
                                MinPrice = minPrice,
                                MaxPrice = maxPrice,
                                NumBedrooms = numBedrooms,
+                               NumBathrooms = numBathrooms,
                                PropertyTypes = propertyTypes
                            });
             }
         }
 
-        private static IEnumerable<Int32> DoStreetSearch_By_strName(String queryFilterString, String foundStreetName, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, IEnumerable<String> propertyTypes)
+        private static IEnumerable<Int32> DoStreetSearch_By_strName(String queryFilterString, String foundStreetName, List<String> status, Int32 minPrice, Int32 maxPrice, Int32 numBedrooms, Int32 numBathrooms, IEnumerable<String> propertyTypes)
         {
             using (var conn = Data.CreateConnection())
             {
@@ -889,6 +923,7 @@ namespace REIQ.Access
                                MinPrice = minPrice,
                                MaxPrice = maxPrice,
                                NumBedrooms = numBedrooms,
+                               NumBathrooms = numBathrooms,
                                PropertyTypes = propertyTypes
                            });
             }

@@ -388,8 +388,22 @@ SELECT DISTINCT region FROM tblSuburb WHERE region LIKE @Str + '%'              
 
             //set region in SQL query
             if (!String.IsNullOrEmpty(region))
-                query.AppendLine(" AND tprt.suburb IN (SELECT name FROM tblsuburb tsbb WHERE tsbb.region LIKE @region) AND tprt.postcode IN (SELECT postcode FROM tblsuburb tsbb WHERE tsbb.region LIKE @region)");
-
+            {                
+                //can be several regions in querystring from the "search by map" page
+                string[] rgs = region.Split(',');
+                if (rgs.Length > 1)
+                {
+                    string tmpRegion = String.Empty;
+                    foreach (var rg in rgs)
+                    {
+                        tmpRegion += "'" + rg + "',";                        
+                    }
+                    region = tmpRegion.TrimEnd(',');
+                    string qr = " AND tprt.suburb IN (SELECT name FROM tblsuburb tsbb WHERE tsbb.region IN (" + region + ")) AND tprt.postcode IN (SELECT postcode FROM tblsuburb tsbb WHERE tsbb.region IN (" + region + "))";
+                    query.AppendLine(qr);
+                }
+                else query.AppendLine(" AND tprt.suburb IN (SELECT name FROM tblsuburb tsbb WHERE tsbb.region LIKE @region) AND tprt.postcode IN (SELECT postcode FROM tblsuburb tsbb WHERE tsbb.region LIKE @region)");
+            }
             //set mapArea in SQL query
             if (!String.IsNullOrEmpty(mapArea))
                 query.AppendLine(" AND tprt.suburb IN (SELECT name FROM tblsuburb tsbb WHERE tsbb.maparea LIKE @maparea) AND tprt.postcode IN (SELECT postcode FROM tblsuburb tsbb WHERE tsbb.maparea LIKE @maparea)");

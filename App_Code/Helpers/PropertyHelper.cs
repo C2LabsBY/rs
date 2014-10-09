@@ -761,6 +761,62 @@ namespace REIQ.Helpers
             }
 
             return "";
-        }        
+        }
+
+			/// <summary>
+			/// returns formatted lotSize: 5.00 -> 5, 5.25 -> 5.25, 5.5 -> 5.50 
+			/// </summary>
+			/// <param name="lotSize"></param>
+			/// <returns></returns>
+        public static string GetLotSizeFormatted(decimal lotSize)
+        {
+            const string intFormat = "0.";
+            const string floatFormat = "0.00";
+
+            if (lotSize == Math.Floor(lotSize))
+                return lotSize.ToString(intFormat);
+            else
+            {
+                decimal formattedLotSize = TruncateToDecimalPlace(lotSize, 2);
+                return formattedLotSize.ToString(floatFormat);
+            }
+        }
+
+        //Used to truncate decimal value in order to show always certain amount of digits without math rounding
+        //e.g. 123,456 -> 123,45
+        public static decimal TruncateToDecimalPlace(decimal numberToTruncate, int decimalPlaces)
+        {
+            decimal power = (decimal)(Math.Pow(10.0, (double)decimalPlaces));
+
+            return Math.Truncate((power * numberToTruncate)) / power;
+        }
+
+        public static void CheckIfHidden(Property property)
+        {
+            if (property.goLive == null) property.goLive = false;
+            //If property sold or isWebDisplay = false or golive = true make redirection to agent profile
+            if (property.status.ToLower() == "sold" || property.isWebDisplay == false || property.goLive == true)
+            {
+                String agentId = String.Empty;
+                int agencyId = 0;
+
+                //Determine which agent or agency this property belongs
+                if (!String.IsNullOrEmpty(property.aID1.ToString())) agentId = property.aID1.ToString();
+                else if (!String.IsNullOrEmpty(property.aID2.ToString())) agentId = property.aID2.ToString();
+                else if (!String.IsNullOrEmpty(property.aID3.ToString())) agentId = property.aID3.ToString();
+                
+                agencyId = property.acID;
+
+                //Redirection to agent profile                    
+                if (!String.IsNullOrEmpty(agentId))
+                {
+                    var agent = REIQ.Access.Agent.GetFromAgentId(Convert.ToInt32(agentId));
+
+                    if (agent != null) HttpContext.Current.Response.Redirect(REIQ.Helpers.PropertyHelper.GenerateURLAgent(agent.firstname + " " + agent.surname, property.suburb, agentId));
+                }
+                //Redirection to agency profile 
+                if (agencyId != 0) HttpContext.Current.Response.Redirect(REIQ.Helpers.PropertyHelper.GenerateURLAgency(REIQ.Access.Agency.GetFromAgencyId(agencyId).name, property.suburb, agencyId));
+            }
+        }
     }
 }

@@ -43,11 +43,11 @@ namespace REIQ.Access
 
         public static IEnumerable<KeyValuePair<int, string>> ListNumberOfBathrooms()
         {
-            yield return new KeyValuePair<int, string>(1, "1 bath");
-            yield return new KeyValuePair<int, string>(2, "2 baths");
-            yield return new KeyValuePair<int, string>(3, "3 baths");
-            yield return new KeyValuePair<int, string>(4, "4 baths");
-            yield return new KeyValuePair<int, string>(5, "5 baths");
+            yield return new KeyValuePair<int, string>(1, "1 bathroom");
+            yield return new KeyValuePair<int, string>(2, "2 bathrooms");
+            yield return new KeyValuePair<int, string>(3, "3 bathrooms");
+            yield return new KeyValuePair<int, string>(4, "4 bathrooms");
+            yield return new KeyValuePair<int, string>(5, "5 bathrooms");
         }
 
         public static IEnumerable<KeyValuePair<string, string>> ListLotSizes()

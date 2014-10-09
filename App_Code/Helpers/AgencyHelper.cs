@@ -115,5 +115,12 @@ namespace REIQ.Helpers
 
             return sb.ToString();
         }
+
+				public static string GetWebAddressFormatted(string url)
+				{
+					const string URL_PREFIX = "http://";
+					if (!url.StartsWith(URL_PREFIX)) return URL_PREFIX + url;
+					return url;
+				}
     }
 }

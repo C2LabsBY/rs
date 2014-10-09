@@ -100,7 +100,20 @@ public class AutoMail
     {
         try
         {
-            //Mail_Send("test@vibetechindia.com", "rakesh.agrawal@vibetechindia.com", "Error in REIQ " + ex.Message + " in " + HttpContext.Current.Request.RawUrl, ex.StackTrace);            
+            //Trying to fix Emails stuck in filters
+            string mailfrom = "error@reiq.com";
+
+            //Create Mail Message Object with content that you want to send with mail.
+            System.Net.Mail.MailMessage MyMailMessage =
+                new System.Net.Mail.MailMessage(mailfrom, "corleon2000@gmail.com", "Error in REIQ " + ex.Message + " in " + HttpContext.Current.Request.RawUrl, ex.StackTrace);
+
+            MyMailMessage.IsBodyHtml = true;
+
+            System.Net.Mail.SmtpClient mailClient = new System.Net.Mail.SmtpClient("127.0.0.1");
+
+            mailClient.Send(MyMailMessage);
+            
+            //Mail_Send("corleon2000@gmail.com", "corleon2000@gmail.com", "Error in REIQ " + ex.Message + " in " + HttpContext.Current.Request.RawUrl, ex.StackTrace);            
         }
         catch (Exception err)
         { }
