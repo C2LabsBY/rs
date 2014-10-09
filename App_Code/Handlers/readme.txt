@@ -1,0 +1,1 @@
+﻿Add custom handlers here.  Make sure to set them up in the web.config's system.webServer/handlers section.
